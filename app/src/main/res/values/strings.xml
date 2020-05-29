@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">HeroesApp</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Nombre</string>
+    <string name="nav_header_subtitle">Genero</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Configuracion</string>
+
+    <string name="menu_favs">Favoritos</string>
+    <string name="menu_recents">Recientes</string>
+    <string name="menu_all">Todos</string>
+    <string name="menu_theme">Temas</string>
+    <string name="hero_details">Descripcion</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="gender_m">Masculino</string>
+    <string name="gender_f">Femenino</string>
+    <string name="gender">Sexo</string>
+    <string name="log_in">Ingresar</string>
+    <string name="hint_coach">Héroe</string>
+
+<!--    Chose theme-->
+    <string name="ch_cap">Capitan</string>
+    <string name="ch_hulk">Hulk</string>
+    <string name="ch_iron_man">Iron Man</string>
+    <string name="ch_thanos">Thanos</string>
+
+
+<!--    Content description-->
+    <string name="img_cap">temaCapitan</string>
+    <string name="img_hulk">temaHulk</string>
+    <string name="img_iron_man">temaIronMan</string>
+    <string name="img_thanos">temaThanos</string>
+
+</resources>

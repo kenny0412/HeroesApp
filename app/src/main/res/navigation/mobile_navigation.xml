@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/loginFragment">
+
+    <fragment
+        android:id="@+id/nav_heroes"
+        android:name="com.app.kenny.heroesapp.ui.allheroes.AllHeroesFragment"
+        android:label="@string/menu_all"
+        tools:layout="@layout/fragment_heroes" >
+        <action
+            android:id="@+id/action_nav_heroes_to_hero_details"
+            app:destination="@id/hero_details"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/hero_details"
+        android:name="com.app.kenny.heroesapp.ui.hero_detail.HeroDetailsFragment"
+        android:label="@string/hero_details"
+        tools:layout="@layout/fragment_hero_details">
+        <argument
+            android:name="heroInfo"
+            app:argType="com.app.kenny.heroesapp.entities.ResHero" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.app.kenny.heroesapp.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_pagerContainerFragment"
+            app:destination="@id/pagerContainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pagerContainerFragment"
+        android:name="com.app.kenny.heroesapp.adapters.pager.PagerContainerFragment"
+        android:label="PagerContainerFragment"
+        tools:layout="@layout/app_bar_main"/>
+
+</navigation>
