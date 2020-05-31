@@ -8,12 +8,14 @@ import android.view.ViewGroup;
 import com.app.kenny.heroesapp.R;
 import com.app.kenny.heroesapp.entities.ResHero;
 import com.app.kenny.heroesapp.ui.allheroes.AllHeroesFragment;
-import com.app.kenny.heroesapp.ui.allheroes.AllHeroesFragmentDirections;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -21,18 +23,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class HeroAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private AllHeroesFragment fragment;
-    private List<ResHero> heroArrayList;
+    private List<ResHero> heroArrayList = new ArrayList<>();
+    private MutableLiveData<ResHero> onItemClick = new MutableLiveData();
 
-    public HeroAdapter(AllHeroesFragment fragment, List<ResHero> heroArrayList) {
-        this.fragment = fragment;
-        this.heroArrayList = heroArrayList;
+    public void  setHeroList(List<ResHero> heroArrayList) {
+        this.heroArrayList = new ArrayList<>(heroArrayList);
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(fragment.getContext()).inflate(R.layout.adapter_all_heroes,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_all_heroes,parent,false);
 
         return new HeroHolder(view);
     }
@@ -50,9 +52,12 @@ public class HeroAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             heroHolder.img_fav.setBackgroundResource(R.drawable.ic_star);
         });
         heroHolder.container_heroes.setOnClickListener(view -> {
-            NavDirections action = AllHeroesFragmentDirections.actionNavHeroesToHeroDetails(hero);
-            NavHostFragment.findNavController(fragment).navigate(action);
+            onItemClick.postValue(hero);
         });
+    }
+
+    public LiveData<ResHero> getOnItemClick() {
+        return onItemClick;
     }
 
     @Override

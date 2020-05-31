@@ -16,12 +16,16 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavDirections;
+import androidx.navigation.NavHost;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.kenny.heroesapp.R;
 import com.app.kenny.heroesapp.adapters.HeroAdapter;
+import com.app.kenny.heroesapp.adapters.pager.PagerContainerFragmentDirections;
 import com.app.kenny.heroesapp.entities.ResHero;
 import com.app.kenny.heroesapp.helpers.Utils;
 
@@ -33,6 +37,7 @@ public class AllHeroesFragment extends Fragment implements LifecycleOwner {
     private AllHeroesViewModel allHeroesViewModel;
     private RecyclerView rcv_heros;
     private ProgressBar allHeroesProgress;
+    private HeroAdapter heroAdapter = new HeroAdapter();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,12 +61,18 @@ public class AllHeroesFragment extends Fragment implements LifecycleOwner {
         allHeroesViewModel.getHeroLiveData().observe(getViewLifecycleOwner(), heroList -> {
             rcv_heros.setVisibility(View.VISIBLE);
             allHeroesProgress.setVisibility(View.GONE);
-            HeroAdapter heroAdapter = new HeroAdapter(AllHeroesFragment.this, heroList);
+            heroAdapter.setHeroList(heroList);
             LayoutAnimationController layoutAnimationController = AnimationUtils.loadLayoutAnimation(getActivity(),R.anim.layout_animation_fall_down);
             rcv_heros.setLayoutAnimation(layoutAnimationController);
             rcv_heros.setLayoutManager(new LinearLayoutManager(getActivity()));
             rcv_heros.setAdapter(heroAdapter);
         });
+
+        heroAdapter.getOnItemClick().observe(getViewLifecycleOwner(), hero -> {
+            NavDirections navDirections = PagerContainerFragmentDirections.actionPagerContainerFragmentToHeroDetails(hero);
+            NavHostFragment.findNavController(this).navigate(navDirections);
+        });
+
     }
     // continuar con la animacion a la hora de que se cambie algun item
     public void runAnimationRcv(RecyclerView rcv_heros){

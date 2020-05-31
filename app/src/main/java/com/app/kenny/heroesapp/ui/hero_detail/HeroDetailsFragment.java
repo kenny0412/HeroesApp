@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.app.kenny.heroesapp.R;
 import com.app.kenny.heroesapp.adapters.HeroAdapter;
 import com.app.kenny.heroesapp.entities.ResHero;
-import com.app.kenny.heroesapp.ui.allheroes.AllHeroesFragmentDirections;
 
 import java.util.List;
 import java.util.Objects;
@@ -51,9 +50,9 @@ public class HeroDetailsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 //        ResHero data = HeroDetailsFragmentArgs.fromBundle(getArguments()).getHeroInfo();
-        heroDetailsViewModel.getHeroDetailLiveData().observe(getViewLifecycleOwner(), resHero -> {
-
-        });
+//        heroDetailsViewModel.getHeroDetailLiveData().observe(getViewLifecycleOwner(), resHero -> {
+//
+//        });
     }
 
 }
