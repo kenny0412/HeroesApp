@@ -10,4 +10,8 @@
         <attr name="buttonColor" format="color"/>
         <attr name="radioTint" format="color"/>
     </declare-styleable>
+    <declare-styleable name="widgetHeroEmpty">
+        <attr name="message" format="string"/>
+        <attr name="icon" format="reference"/>
+    </declare-styleable>
 </resources>

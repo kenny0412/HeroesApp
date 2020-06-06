@@ -32,5 +32,18 @@
     <string name="img_hulk">temaHulk</string>
     <string name="img_iron_man">temaIronMan</string>
     <string name="img_thanos">temaThanos</string>
+    <string name="estadisticas">Estadisticas</string>
+    <string name="ocupacion">Ocupacion</string>
+    <string name="tipo_de_heroe">Tipo de héroe</string>
+    <string name="nombre_de_pila">Nombre de Pila</string>
+    <string name="nombre_de_heroe">Nombre de héroe</string>
+    <string name="ingeniero">Ingeniero</string>
+    <string name="inteligencia">Inteligencia</string>
+    <string name="durabilidad">Durabilidad</string>
+    <string name="poder">Poder</string>
+    <string name="combate">Combate</string>
+    <string name="fuerza">Fuerza</string>
+    <string name="velocidad">Velocidad</string>
+    <string name="buscar">Buscar</string>
 
 </resources>

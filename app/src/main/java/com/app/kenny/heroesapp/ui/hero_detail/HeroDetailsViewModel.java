@@ -1,6 +1,7 @@
 package com.app.kenny.heroesapp.ui.hero_detail;
 
 import com.app.kenny.heroesapp.api.RetrofitApiMethods;
+import com.app.kenny.heroesapp.entities.HeroDetails;
 import com.app.kenny.heroesapp.entities.ResHero;
 import com.app.kenny.heroesapp.helpers.VariablesGlobales;
 
@@ -15,7 +16,7 @@ import retrofit2.Response;
 
 public class HeroDetailsViewModel extends ViewModel {
 
-    private MutableLiveData<ResHero> heroDetailLiveData;
+    private MutableLiveData<HeroDetails> heroDetailLiveData = new MutableLiveData<>();;
     private RetrofitApiMethods provider;
 
     public HeroDetailsViewModel() {
@@ -23,9 +24,9 @@ public class HeroDetailsViewModel extends ViewModel {
     }
 
     public void getHero(int heroId){
-        provider.getSuperHeroesClient().getHeroe(heroId).enqueue(new Callback<ResHero>() {
+        provider.getSuperHeroesClient().getHeroe(heroId).enqueue(new Callback<HeroDetails>() {
             @Override
-            public void onResponse(Call<ResHero> call, Response<ResHero> response) {
+            public void onResponse(Call<HeroDetails> call, Response<HeroDetails> response) {
                 if (response.isSuccessful()){
                     heroDetailLiveData.postValue(response.body());
                 }else {
@@ -34,13 +35,13 @@ public class HeroDetailsViewModel extends ViewModel {
             }
 
             @Override
-            public void onFailure(Call<ResHero> call, Throwable t) {
+            public void onFailure(Call<HeroDetails> call, Throwable t) {
                 heroDetailLiveData.postValue(null);
             }
         });
     }
 
-    public LiveData<ResHero> getHeroDetailLiveData() {
+    public LiveData<HeroDetails> getHeroDetailLiveData() {
         return heroDetailLiveData;
     }
 }

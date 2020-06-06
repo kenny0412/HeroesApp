@@ -7,30 +7,24 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
-import androidx.navigation.NavHost;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.app.kenny.heroesapp.R;
-import com.app.kenny.heroesapp.adapters.HeroAdapter;
+import com.app.kenny.heroesapp.adapters.heroadapter.HeroAdapter;
 import com.app.kenny.heroesapp.adapters.pager.PagerContainerFragmentDirections;
-import com.app.kenny.heroesapp.entities.ResHero;
 import com.app.kenny.heroesapp.helpers.Utils;
-
-import java.util.List;
-import java.util.Objects;
+import com.app.kenny.heroesapp.helpers.VariablesGlobales;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AllHeroesFragment extends Fragment implements LifecycleOwner {
 
@@ -38,6 +32,7 @@ public class AllHeroesFragment extends Fragment implements LifecycleOwner {
     private RecyclerView rcv_heros;
     private ProgressBar allHeroesProgress;
     private HeroAdapter heroAdapter = new HeroAdapter();
+    private SwipeRefreshLayout refreshLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +46,14 @@ public class AllHeroesFragment extends Fragment implements LifecycleOwner {
         rcv_heros = view.findViewById(R.id.rcv_heroes);
         rcv_heros.setVisibility(View.GONE);
         allHeroesProgress = view.findViewById(R.id.all_hero_progress);
+        refreshLayout = view.findViewById(R.id.fav_refresh);
+        refreshLayout.setOnRefreshListener(() -> {
+            VariablesGlobales.getInstancia().setShowAllHeroes(null);
+            allHeroesViewModel.getHeros(Utils.getRandomNumber());
+            rcv_heros.setVisibility(View.GONE);
+            allHeroesProgress.setVisibility(View.VISIBLE);
+            refreshLayout.setEnabled(false);
+        });
         return view;
     }
 
@@ -66,11 +69,16 @@ public class AllHeroesFragment extends Fragment implements LifecycleOwner {
             rcv_heros.setLayoutAnimation(layoutAnimationController);
             rcv_heros.setLayoutManager(new LinearLayoutManager(getActivity()));
             rcv_heros.setAdapter(heroAdapter);
+            refreshLayout.setEnabled(true);
         });
 
         heroAdapter.getOnItemClick().observe(getViewLifecycleOwner(), hero -> {
             NavDirections navDirections = PagerContainerFragmentDirections.actionPagerContainerFragmentToHeroDetails(hero);
             NavHostFragment.findNavController(this).navigate(navDirections);
+        });
+
+        heroAdapter.getOnAddHeroFavClick().observe(getViewLifecycleOwner(),resHero -> {
+            allHeroesViewModel.createHero(resHero.getId(),resHero.getHeroName(),resHero.getImg());
         });
 
     }

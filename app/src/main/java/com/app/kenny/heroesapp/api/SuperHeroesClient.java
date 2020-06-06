@@ -1,5 +1,6 @@
 package com.app.kenny.heroesapp.api;
 
+import com.app.kenny.heroesapp.entities.HeroDetails;
 import com.app.kenny.heroesapp.entities.ResHero;
 
 import retrofit2.Call;
@@ -14,5 +15,5 @@ public interface SuperHeroesClient {
     Call<ResHero> getHeroesImage(@Path("idhero") int idHero);
 
     @GET("{idhero}")
-    Call<ResHero> getHeroe(@Path("idhero") int idHero);
+    Call<HeroDetails> getHeroe(@Path("idhero") int idHero);
 }

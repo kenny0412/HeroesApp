@@ -1,19 +1,27 @@
 package com.app.kenny.heroesapp.ui.favorites;
 
+import android.app.Application;
+
+import com.app.kenny.heroesapp.data.HeroEntity;
+import com.app.kenny.heroesapp.data.HeroRepository;
+
+import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class FavoritesViewModel extends ViewModel {
+public class FavoritesViewModel extends AndroidViewModel {
 
-    private MutableLiveData<String> mText;
+    private HeroRepository repository;
 
-    public FavoritesViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+
+    public FavoritesViewModel(@NonNull Application application) {
+        super(application);
+        repository = new HeroRepository(application.getApplicationContext());
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<List<HeroEntity>> getAllHeroes() {
+        return repository.getAllHeroes();
     }
 }

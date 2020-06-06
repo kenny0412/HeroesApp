@@ -4,4 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.recent.RecentFragment"/>
+    tools:context=".ui.recent.RecentFragment">
+
+    <com.app.kenny.heroesapp.customwidget.WidgetHeroEmpty
+        android:id="@+id/hero_empty_recent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:message="No hay héroes recientes"
+        app:icon="@drawable/superhero"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

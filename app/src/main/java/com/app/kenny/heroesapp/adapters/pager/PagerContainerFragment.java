@@ -2,9 +2,14 @@ package com.app.kenny.heroesapp.adapters.pager;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
+import com.app.kenny.heroesapp.MainActivity;
 import com.app.kenny.heroesapp.R;
 import com.app.kenny.heroesapp.ui.allheroes.AllHeroesFragment;
 import com.app.kenny.heroesapp.ui.favorites.FavoritesFragment;
@@ -27,19 +32,14 @@ public class PagerContainerFragment extends Fragment {
    private ViewPager2 viewPager;
    private PagerContainerAdapter adapter;
    private TabLayout tabLayout;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        adapter = new PagerContainerAdapter(this,getFragmentList());
-
-    }
+   private Toolbar toolbar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.app_bar_main, container, false);
         tabLayout = view.findViewById(R.id.tableLayout);
         viewPager = view.findViewById(R.id.pager);
+        adapter = new PagerContainerAdapter(this,getFragmentList());
         viewPager.setAdapter(adapter);
         List<String> names = getFragmentName();
         new TabLayoutMediator(tabLayout,viewPager,(tab,position)->tab.setText(names.get(position))).attach();
@@ -49,6 +49,7 @@ public class PagerContainerFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
 
     public List<String> getFragmentName(){
@@ -67,5 +68,7 @@ public class PagerContainerFragment extends Fragment {
         fragments.add(new ThemeFragment());
         return fragments;
     }
+
+
 
 }

@@ -23,7 +23,9 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_pagerContainerFragment"
-            app:destination="@id/pagerContainerFragment" />
+            app:destination="@id/pagerContainerFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/pagerContainerFragment"
@@ -32,7 +34,9 @@
         tools:layout="@layout/app_bar_main">
         <action
             android:id="@+id/action_pagerContainerFragment_to_hero_details"
-            app:destination="@id/hero_details" />
+            app:destination="@id/hero_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
 
 </navigation>
