@@ -50,8 +50,6 @@ public class AllHeroesFragment extends Fragment implements LifecycleOwner {
         refreshLayout.setOnRefreshListener(() -> {
             VariablesGlobales.getInstancia().setShowAllHeroes(null);
             allHeroesViewModel.getHeros(Utils.getRandomNumber());
-            rcv_heros.setVisibility(View.GONE);
-            allHeroesProgress.setVisibility(View.VISIBLE);
             refreshLayout.setEnabled(false);
         });
         return view;

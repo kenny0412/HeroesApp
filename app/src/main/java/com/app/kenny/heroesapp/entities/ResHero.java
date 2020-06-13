@@ -18,6 +18,14 @@ public class ResHero implements Parcelable {
     @SerializedName("fav")
     private boolean fav;
 
+    public ResHero(String status, String id, String heroName, String img, boolean fav) {
+        this.status = status;
+        this.id = id;
+        this.heroName = heroName;
+        this.img = img;
+        this.fav = fav;
+    }
+
     protected ResHero(Parcel in) {
         status = in.readString();
         id = in.readString();

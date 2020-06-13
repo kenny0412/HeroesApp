@@ -41,10 +41,7 @@ public class FavHeroAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         Picasso.get().load(hero.getImgUrl()).into(heroHolder.img_hero);
         heroHolder.tv_hero_name.setText(hero.getHeroName());
-        heroHolder.img_fav.setBackgroundResource(R.drawable.ic_stroke_star);
-        heroHolder.img_fav.setOnClickListener(view -> {
-            heroHolder.img_fav.setBackgroundResource(R.drawable.ic_star);
-        });
+        heroHolder.img_fav.setBackgroundResource(R.drawable.ic_star);
         heroHolder.container_heroes.setOnClickListener(view -> {
             onItemClick.postValue(hero);
         });

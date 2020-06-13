@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.app.kenny.heroesapp.R;
+import com.app.kenny.heroesapp.helpers.Utils;
 import com.app.kenny.heroesapp.ui.ThemeUtils;
 import com.google.android.material.checkbox.MaterialCheckBox;
 
@@ -21,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import okhttp3.internal.Util;
 
 public class ThemeFragment extends Fragment {
 
@@ -64,7 +66,7 @@ public class ThemeFragment extends Fragment {
             if (isChecked && ThemeUtils.CAP != theme){
                 editor.putInt("THEME", ThemeUtils.CAP);
                 editor.apply();
-                ThemeUtils.changeToTheme(requireActivity(), ThemeUtils.CAP);
+                Utils.showDialog(getActivity(),"El tema se actualizará al reiniciar la aplicación ");
                 ch_hulk.setChecked(false);
                 ch_iron_man.setChecked(false);
                 ch_thanos.setChecked(false);
@@ -75,8 +77,8 @@ public class ThemeFragment extends Fragment {
             if (isChecked && ThemeUtils.HULK != theme){
                 editor.putInt("THEME", ThemeUtils.HULK);
                 editor.apply();
-                contextWrapper = new ContextThemeWrapper(getActivity(), R.style.hulkTheme);
-                ThemeUtils.changeToTheme(requireActivity(), ThemeUtils.HULK);
+                Utils.showDialog(getActivity(),"El tema se actualizará al reiniciar la aplicación ");
+//                ThemeUtils.changeToTheme(requireActivity(), ThemeUtils.HULK);
                 ch_cap.setChecked(false);
                 ch_iron_man.setChecked(false);
                 ch_thanos.setChecked(false);
@@ -87,7 +89,8 @@ public class ThemeFragment extends Fragment {
             if (isChecked && ThemeUtils.IRON_MAN != theme){
                 editor.putInt("THEME", ThemeUtils.IRON_MAN);
                 editor.apply();
-                ThemeUtils.changeToTheme(requireActivity(), ThemeUtils.IRON_MAN);
+                Utils.showDialog(getActivity(),"El tema se actualizará al reiniciar la aplicación ");
+//                ThemeUtils.changeToTheme(requireActivity(), ThemeUtils.IRON_MAN);
                 ch_hulk.setChecked(false);
                 ch_cap.setChecked(false);
                 ch_thanos.setChecked(false);
@@ -98,7 +101,8 @@ public class ThemeFragment extends Fragment {
             if (isChecked && ThemeUtils.THANOS != theme){
                 editor.putInt("THEME", ThemeUtils.THANOS);
                 editor.apply();
-                ThemeUtils.changeToTheme(requireActivity(), ThemeUtils.THANOS);
+                Utils.showDialog(getActivity(),"El tema se actualizará al reiniciar la aplicación ");
+//                ThemeUtils.changeToTheme(requireActivity(), ThemeUtils.THANOS);
                 ch_hulk.setChecked(false);
                 ch_iron_man.setChecked(false);
                 ch_cap.setChecked(false);

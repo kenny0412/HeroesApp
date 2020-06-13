@@ -21,6 +21,12 @@ public class HeroRepository {
         });
     }
 
+    public void deleteHero(int idHero){
+        HeroRoomDatabase.appDatabaseWriteExecutor.execute(() -> {
+            heroDao.delete(idHero);
+        });
+    }
+
     public LiveData<List<HeroEntity>> getAllHeroes(){
         return heroDao.getAllProducts();
     }

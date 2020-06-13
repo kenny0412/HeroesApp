@@ -57,7 +57,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPurple</item>
         <item name="colorPrimaryDark">@color/colorBlack</item>
-        <item name="backgroundColor">@color/colorBlack</item>
+        <item name="backgroundColor">@color/colorBlack</item>z
         <item name="textColor">@color/colorWhite</item>
         <item name="buttonColor">@color/colorPurple</item>
         <item name="textColorHint">@color/colorWhite</item>
@@ -84,5 +84,9 @@
         <item name="android:paddingRight">16dp</item>
         <item name="strokeColor">@color/mtrl_btn_stroke_color_selector</item>
         <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="Theme_Dialog_Translucent" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 </resources>

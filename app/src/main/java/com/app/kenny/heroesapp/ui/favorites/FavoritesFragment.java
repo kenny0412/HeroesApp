@@ -14,11 +14,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavDirections;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.kenny.heroesapp.R;
 import com.app.kenny.heroesapp.adapters.favheroadapter.FavHeroAdapter;
+import com.app.kenny.heroesapp.adapters.pager.PagerContainerFragmentDirections;
+import com.app.kenny.heroesapp.entities.ResHero;
 
 public class FavoritesFragment extends Fragment {
 
@@ -44,12 +48,29 @@ public class FavoritesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         favoritesViewModel.getAllHeroes().observe(getViewLifecycleOwner(),heroEntities -> {
-            rcv_heroes_fav.setVisibility(View.VISIBLE);
-            favHeroAdapter.setFavHeroList(heroEntities);
-            LayoutAnimationController layoutAnimationController = AnimationUtils.loadLayoutAnimation(getActivity(),R.anim.layout_animation_fall_down);
-            rcv_heroes_fav.setLayoutAnimation(layoutAnimationController);
-            rcv_heroes_fav.setLayoutManager(new LinearLayoutManager(getActivity()));
-            rcv_heroes_fav.setAdapter(favHeroAdapter);
+            if (heroEntities.size() != 0){
+                rcv_heroes_fav.setVisibility(View.VISIBLE);
+                favHeroAdapter.setFavHeroList(heroEntities);
+                LayoutAnimationController layoutAnimationController = AnimationUtils.loadLayoutAnimation(getActivity(),R.anim.layout_animation_fall_down);
+                rcv_heroes_fav.setLayoutAnimation(layoutAnimationController);
+                rcv_heroes_fav.setLayoutManager(new LinearLayoutManager(getActivity()));
+                rcv_heroes_fav.setAdapter(favHeroAdapter);
+            }else {
+                rcv_heroes_fav.setVisibility(View.GONE);
+            }
+
+        });
+
+        favHeroAdapter.getOnItemClick().observe(getViewLifecycleOwner(), heroEntity -> {
+            ResHero resHero = new ResHero("ok",heroEntity.getHeroId(),heroEntity.getHeroName(),heroEntity.getImgUrl(),false);
+            NavDirections navDirections = PagerContainerFragmentDirections.actionPagerContainerFragmentToHeroDetails(resHero);
+            NavHostFragment.findNavController(this).navigate(navDirections);
+
+        });
+
+        //AQUI
+        favHeroAdapter.getonDeleteHeroFavClick().observe(getViewLifecycleOwner(),resHero -> {
+            favoritesViewModel.deleteHero(Integer.parseInt(resHero.getHeroId()));
         });
     }
 }

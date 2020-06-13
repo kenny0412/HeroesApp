@@ -25,7 +25,8 @@
             android:id="@+id/action_loginFragment_to_pagerContainerFragment"
             app:destination="@id/pagerContainerFragment"
             app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
+            app:exitAnim="@android:anim/fade_out"
+            />
     </fragment>
     <fragment
         android:id="@+id/pagerContainerFragment"

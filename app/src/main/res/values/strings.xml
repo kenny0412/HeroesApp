@@ -45,5 +45,10 @@
     <string name="fuerza">Fuerza</string>
     <string name="velocidad">Velocidad</string>
     <string name="buscar">Buscar</string>
+    <string name="lbl_aceptar">Aceptar</string>
+
+
+    <string name="msg_val_max">El nombre debe de tener menos de 25 letras</string>
+    <string name="msg_val_min">El nombre debe de tener más de 3 letras</string>
 
 </resources>
